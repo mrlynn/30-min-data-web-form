@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="30 Minutes to a Data Enabled Webform"
+    />
+    <meta name="author" content="Michael Lynn" />
+
+    <title>30 Minutes to a Data Enabled Webform</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom fonts for this template -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href="./css/styles.css" rel="stylesheet" /> <!-- optional additional css styles if'n y'like -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.4.0/stitch.js"></script>
+    <script src="./config.js"></script>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+            <a class="navbar-brand" href="/index.html">Home</a>
+        </div>
+    </nav>
+
+    <!-- Form -->
+    <section class="bg-light">
+      <div class="container">
+        <h2 class="mb-5 jumbotron text-center">30 Minutes to a Data Enabled Web Form</h2>
+        <div class="col-md-12 mx-auto">
+          <form>
+            <div class="form-group">
+              <div class="form-row">
+                <label for="name">Name:</label>
+                <input
+                  type="text"
+                  placeholder="Your Full Name"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                />
+              </div>
+                <div class="row">
+                  <div class="col-md-4 form-group">
+                      <label for="lat">My Location - Latitude</label>
+                      <input type="text" id="lat" name="lat" value="" class="form-control" disabled>
+                  </div>
+                  <div class="col-md-4">
+                      <label for="lon">My Location - Longitude</label>
+                      <input type="text" id="lon" name="lon" value="" class="form-control" disabled>
+                  </div>
+                  <div class="col-md-4 text-middle">
+                      <input type="geolocation" type="hidden" id="geolocation" name="geolocation" hidden><br>
+                      <button type="button" class="btn btn-lg btn-primary" onclick="showPosition();">Share Location</button>
+                  </div>
+              </div>
+                <div class="form-row">
+                        <label for="exp">My experience with MongoDB:</label>
+
+                        <div class="col-lg-12 col-md-12">
+                            <select name="exp" id="select_exp" class="form-control">
+                                <option value="Brand new to MongoDB">Brand new to MongoDB</option>
+                                <option value="Played with it">Played with it</option>
+                                <option value="Used in the past">Used in the past</option>
+                                <option value="Company Uses">My company uses it</option>
+                                <option value="Advanced">Advanced MongoDB User</option>
+                            </select>
+                        </div>
+    
+                    </div>
+                <div class="form-row">
+                        <label for="role">I am a:</label>
+
+                        <div class="col-lg-12 col-md-12">
+                            <select name="role" id="role" class="form-control">
+                                <option value="Student">Student</option>
+                                <option value="Gamer">Gamer</option>
+                                <option value="Developer">Developer/Engineer</option>
+                                <option value="DevRel">Developer Advocate/Relations</option>
+                                <option value="DevOps">DevOps/SRE</option>
+                                <option value="Data Scientist/Analyst">Data Analyst/Scientist</option>
+                                <option value="None/Other">Other</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+            <div class="form-row">
+              <div class="col-12 col-md-3"><p></p>
+                <button class="btn btn-block btn-lg btn-primary"
+                    onclick="doit();return false;"
+                    class="btn btn-lg btn-success"
+                    >
+                  Send Response
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+      <!-- Footer -->
+  <footer class="footer bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item">
+                        <a href="/about.html">About</a>
+                    </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                  <a href="/contact.html">Contact</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                  <a href="/terms.html">Terms of Use</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                  <a href="/privacy.html">Privacy Policy</a>
+                </li>
+              </ul>
+              <p class="text-muted small mb-4 mb-lg-0">&copy; Michael Lynn 2020. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item mr-3">
+                  <a href="https://linkedin.com/in/mlynn">
+                    <i class="fab fa-linkedin fa-2x fa-fw"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item mr-3">
+                  <a href="https://twitter.com/mlynn">
+                    <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://instagram.com/mlynnstagram">
+                    <i class="fab fa-instagram fa-2x fa-fw"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+            const { Stitch, AnonymousCredential } = stitch;
+      
+            function doit() {
+              client.auth
+                .loginWithCredential(new stitch.AnonymousCredential())
+                .then(() => insertData());
+            }
+    
+            function insertData() {
+              var n = new Date();
+              var obj = {};
+              obj.mdb_created = n;
+      
+              obj.name = $("#name").val();
+              obj.role = $("#role").val();
+              obj.exp = $("#exp").val();
+
+              if ($("#lat").val().length > 0) {
+                  var lat = $("#lat").val();
+                  var lon = $("#lon").val();
+                  lat = parseFloat(lat).toFixed(2);
+                  lon = parseFloat(lon).toFixed(2);
+                  var location = {};
+                  location.type = "Point";
+                  location.coordinates = new Array(1,2);
+                  location.coordinates[0] = parseFloat(lon);
+                  location.coordinates[1] = parseFloat(lat);
+
+                  obj.location = location;
+                  console.log(obj);
+              }
+              obj.browser = {};
+              obj.browser.ua = navigator.userAgent || undefined;
+              obj.browser.lang = navigator.language || undefined;
+              obj.browser.plat = navigator.platform || undefined;
+              obj.owner = client.auth.authInfo.userId;
+
+              db.collection("responses")
+                .insertOne(obj)
+                .then(recordSuccess)
+                .catch(err => console.error(`login failed with error: ${err}`));
+            }
+      
+            function recordSuccess() {
+              window.location = "thankyou.html";
+            }
+      
+            function getQueryVariable(variable) {
+              var query = window.location.search.substring(1);
+              var vars = query.split("&");
+              for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                  return pair[1];
+                }
+              }
+            }
+
+            function showPosition() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                  var lat = position.coords.latitude;
+                  var lon = position.coords.longitude;
+                  document.getElementById("lat").value = lat;
+                  document.getElementById("lon").value = lon;
+                });
+              } else {
+                alert("Sorry, your browser does not support HTML5 geolocation.");
+              }
+            }
+            
+          </script>
+  </body>
+</html>
