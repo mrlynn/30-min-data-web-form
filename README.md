@@ -3,19 +3,19 @@
 
 Posting a form, capturing data and storing that in a database is a requirement as old as the web itself. Let’s take 30 minutes and build a short, but sweet solution using the MongoDB Platform. We’ll be creating a basic web form using HTML, a bit of JavaScript and storing the data in a MongoDB database. We’ll need a few things before we get moving so take a few minutes and make sure you’ve got the following items in place.
 
-##MongoDB Atlas
+## MongoDB Atlas
 
 To get started, you’ll need to have a MongoDB Atlas account - check out this article on [getting started with MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/) for some quick information to get you up and running.  If you haven’t done this, [register for an account on MongoDB Atlas](https://docs.atlas.mongodb.com/tutorial/create-atlas-account/) and then deploy a free tier instance. Follow these linked guides.
 
-##Basic HTML
+## Basic HTML
 
 You will also need a basic understanding of HTML, more specifically, forms. Thankfully, this is readily available [at many places on the web](https://www.w3schools.com/html/html_forms.asp). We’ll be using some very basic tags such as `&lt;form>`, `&lt;input>`, `&lt;select>` to capture input in a form.
 
-##JavaScript
+## JavaScript
 
 For this brief tutorial, if you can copy/paste JavaScript and tweak a few lines, you should be good to go. But you will want to understand some basics of how JavaScript works. For that, you can head over to [W3Schools](https://www.w3schools.com/js/) for a basic introduction. The key thing here to understand is that JavaScript runs in the browser. We’re going to put some pre-written code that leverages the MongoDB SDK into an HTML file. 
 
-##Code Editor
+## Code Editor
 
 I use [Visual Studio Code](https://code.visualstudio.com/), but you can use just about any editor as long as you can edit and save your code files. 
 
