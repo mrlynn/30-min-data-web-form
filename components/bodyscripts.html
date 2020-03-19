@@ -1,0 +1,79 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"
+></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const { Stitch, AnonymousCredential } = stitch;
+
+  function sendResponse() {
+    client.auth
+      .loginWithCredential(new stitch.AnonymousCredential())
+      .then(() => insertData());
+  }
+
+  function insertData() {
+    var n = new Date();
+    var obj = {};
+    obj.mdb_created = n;
+
+    obj.name = $("#name").val();
+    obj.role = $("#role").val();
+    obj.exp = $("#exp").val();
+
+    if ($("#lat").val().length > 0) {
+      var lat = $("#lat").val();
+      var lon = $("#lon").val();
+      lat = parseFloat(lat).toFixed(2);
+      lon = parseFloat(lon).toFixed(2);
+      var location = {};
+      location.type = "Point";
+      location.coordinates = new Array(1, 2);
+      location.coordinates[0] = parseFloat(lon);
+      location.coordinates[1] = parseFloat(lat);
+
+      obj.location = location;
+      console.log(obj);
+    }
+    obj.browser = {};
+    obj.browser.ua = navigator.userAgent || undefined;
+    obj.browser.lang = navigator.language || undefined;
+    obj.browser.plat = navigator.platform || undefined;
+    obj.owner = client.auth.authInfo.userId;
+
+    db.collection("responses")
+      .insertOne(obj)
+      .then(recordSuccess)
+      .catch(err => console.error(`login failed with error: ${err}`));
+  }
+
+  function recordSuccess() {
+    window.location = "thankyou.html";
+  }
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) {
+        return pair[1];
+      }
+    }
+  }
+
+  function showPosition() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        document.getElementById("lat").value = lat;
+        document.getElementById("lon").value = lon;
+      });
+    } else {
+      alert("Sorry, your browser does not support HTML5 geolocation.");
+    }
+  }
+</script>

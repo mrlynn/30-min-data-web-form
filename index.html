@@ -31,7 +31,7 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="./css/styles.css" rel="stylesheet" /> <!-- optional additional css styles if'n y'like -->
+    <link href="styles.css" rel="stylesheet" /> <!-- optional additional css styles if'n y'like -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.4.0/stitch.js"></script>
     <script src="./config.js"></script>
@@ -109,7 +109,7 @@
             <div class="form-row">
               <div class="col-12 col-md-3"><p></p>
                 <button class="btn btn-block btn-lg btn-primary"
-                    onclick="doit();return false;"
+                    onclick="sendResponse();return false;"
                     class="btn btn-lg btn-success"
                     >
                   Send Response
@@ -178,7 +178,7 @@
     <script>
             const { Stitch, AnonymousCredential } = stitch;
       
-            function doit() {
+            function sendResponse() {
               client.auth
                 .loginWithCredential(new stitch.AnonymousCredential())
                 .then(() => insertData());

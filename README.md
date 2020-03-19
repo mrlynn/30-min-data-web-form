@@ -9,7 +9,7 @@ To get started, you’ll need to have a MongoDB Atlas account - check out this a
 
 ## Basic HTML
 
-You will also need a basic understanding of HTML, more specifically, forms. Thankfully, this is readily available [at many places on the web](https://www.w3schools.com/html/html_forms.asp). We’ll be using some very basic tags such as `&lt;form>`, `&lt;input>`, `&lt;select>` to capture input in a form.
+You will also need a basic understanding of HTML, more specifically, forms. Thankfully, this is readily available [at many places on the web](https://www.w3schools.com/html/html_forms.asp). We’ll be using some very basic tags such as `<form>`, `<input>`, `<select>` to capture input in a form.
 
 ## JavaScript
 
@@ -18,6 +18,8 @@ For this brief tutorial, if you can copy/paste JavaScript and tweak a few lines,
 ## Code Editor
 
 I use [Visual Studio Code](https://code.visualstudio.com/), but you can use just about any editor as long as you can edit and save your code files. 
+
+## Outline
 
 Here’s an outline of what we’re going to accomplish:
 
