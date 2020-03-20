@@ -35,37 +35,189 @@ Here’s an outline of what we’re going to accomplish:
 
 If you’ve followed the above Atlas Getting Started Guide, you should have a free tier cluster launched. Be sure you follow the guidelines to add a whitelist entry, and create a database user. You’ll need these things to connect to your MongoDB Database.
 
-Now on to building the form. A simple HTML form leverages only a few tags.The following will suffice.
 
+## Putting it all together
+
+### HTML Page with Form and Javascript
+
+We're going to construct a basic HTML page using bootstrap for styling and a bit of JavaScript to help us manipulate the data and call in the Stitch SDK.  Notice in the section below, we're Linking
+
+## HEAD SECTION
+
+The HEAD section is where we configure some basic information about the page such as the description, and title and we link to some additional libraries that will help us style the page and pull in some additional JavaScript frameworks. We're going to use jQuery helpers in our project. JQuery is a framework that simplifies manipulation of HTML document elements. In this project, we're going to use it specifically to simplify grabbing the elements that users put into the fields in our form so that we can use the MongoDB Stitch SDK to insert that data into the database.
 
 ```
-<form>
-   <label for="name">Name:</label>
-   <input type="text" placeholder="Your Full Name" name="name" />
-   <label for="lat">My Location - Latitude</label>
-   <input type="text" name="lat" value="" >
-   <label for="lon">My Location - Longitude</label>
-   <input type="text" name="lon" value="">
-   <label for="exp">My experience with MongoDB:</label>
-   <select name="exp" id="select_exp">
-       <option value="Brand new to MongoDB">Brand new to MongoDB</option>
-       <option value="Played with it">Played with it</option>
-       <option value="Used in the past">Used in the past</option>
-       <option value="Company Uses">My company uses it</option>
-       <option value="Advanced">Advanced MongoDB User</option>
-   </select>
-   <label for="role">I am a:</label>
-   <select name="role">
-       <option value="Student">Student</option>
-       <option value="Gamer">Gamer</option>
-       <option value="Developer">Developer/Engineer</option>
-       <option value="DevRel">Developer Advocate/Relations</option>
-       <option value="DevOps">DevOps/SRE</option>
-       <option value="Data Scientist/Analyst">Data Analyst/Scientist</option>
-       <option value="None/Other">Other</option>
-   </select>
-   <input type="submit">
-</form>
+    <!-- Some basic META information - helps with SEO -->
+    <meta name="author" content="Michael Lynn" />
+    <title>30 Minutes to a Data Enabled Webform</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet" /> <!-- optional additional css styles if'n y'like -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <!-- <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.4.0/stitch.js"></script> -->
+    <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js"></script>
+    
+    <!-- Our configuration JavaScript - with reference to our Stich App ID -->
+    <script src="./config.js"></script>
 ```
 
-This is a very basic form - we can transform this using [Bootstrap](https://getbootstrap.com/) or similar... but for now, let's leave it as is.
+## BODY SECTION 
+
+This section is where we leverage the HTML form tags to prompt our user for the data we'll store in MongoDB. I'm using Bootstrap to make things look pretty - but you really only need the HTML tags.
+
+```
+    <section class="bg-light">
+      <div class="container">
+        <h2 class="mb-5 jumbotron text-center">30 Minutes to a Data Enabled Web Form</h2>
+        <div class="col-md-12 mx-auto">
+          <form>
+            <div class="form-group">
+              <div class="form-row">
+                <label for="name">Name:</label>
+                <input
+                  type="text"
+                  placeholder="Your Full Name"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                />
+              </div>
+                <div class="row">
+                  <div class="col-md-4 form-group">
+                      <label for="lat">My Location - Latitude</label>
+                      <input type="text" id="lat" name="lat" value="" class="form-control" disabled>
+                  </div>
+                  <div class="col-md-4">
+                      <label for="lon">My Location - Longitude</label>
+                      <input type="text" id="lon" name="lon" value="" class="form-control" disabled>
+                  </div>
+                  <div class="col-md-4 text-middle">
+                      <input type="geolocation" type="hidden" id="geolocation" name="geolocation" hidden><br>
+                      <button type="button" class="btn btn-lg btn-primary" onclick="showPosition();">Share Location</button>
+                  </div>
+              </div>
+                <div class="form-row">
+                        <label for="exp">My experience with MongoDB:</label>
+                        <div class="col-lg-12 col-md-12">
+                            <select name="exp" id="select_exp" class="form-control">
+                                <option value="Brand new to MongoDB">Brand new to MongoDB</option>
+                                <option value="Played with it">Played with it</option>
+                                <option value="Used in the past">Used in the past</option>
+                                <option value="Company Uses">My company uses it</option>
+                                <option value="Advanced">Advanced MongoDB User</option>
+                            </select>
+                        </div>
+                    </div>
+                <div class="form-row">
+                        <label for="role">I am a:</label>
+                        <div class="col-lg-12 col-md-12">
+                            <select name="role" id="role" class="form-control">
+                                <option value="Student">Student</option>
+                                <option value="Gamer">Gamer</option>
+                                <option value="Developer">Developer/Engineer</option>
+                                <option value="DevRel">Developer Advocate/Relations</option>
+                                <option value="DevOps">DevOps/SRE</option>
+                                <option value="Data Scientist/Analyst">Data Analyst/Scientist</option>
+                                <option value="None/Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+            <div class="form-row">
+              <div class="col-12 col-md-3"><p></p>
+                <button class="btn btn-block btn-lg btn-primary"
+                    onclick="sendResponse();return false;"
+                    class="btn btn-lg btn-success"
+                    >
+                  Send Response
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+```
+
+## POST BODY SCRIPT SECTION 
+
+We'll place our JavaScript elements after the body of our HTML page. This ensures that the entire page loads prior to any of the script elements. In this section, notice we have several functions. 
+
+* sendResponse() - No parameters. This invokes a method on our Stitch SDK Client to authenticate with the anonymous credential provider. Then, it calls another function called insertData();
+* insertData() - No parameters. This function uses jQuery to obtain the values of the fields in the html form, builds a JSON document and uses the Stitch SDK to send those to the database.
+* recordSuccess() - No parameters. This function simply redirects the browser to a new page - where we'll display the data we collected.
+
+```
+<!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const { Stitch, AnonymousCredential } = stitch;
+
+    function sendResponse() {
+        client.auth
+            .loginWithCredential(new stitch.AnonymousCredential())
+            .then(() => insertData())
+            .catch(err => console.error(`login failed with error: ${err}`));
+    }
+
+    function insertData() {
+        var n = new Date();
+        var obj = {};
+        obj.mdb_created = n;
+
+        obj.name = $("#name").val();
+        obj.role = $("#role").val();
+        obj.exp = $("#exp").val();
+
+        if ($("#lat").val().length > 0) {
+            var lat = $("#lat").val();
+            var lon = $("#lon").val();
+            lat = parseFloat(lat).toFixed(2);
+            lon = parseFloat(lon).toFixed(2);
+            var location = {};
+            location.type = "Point";
+            location.coordinates = new Array(1,2);
+            location.coordinates[0] = parseFloat(lon);
+            location.coordinates[1] = parseFloat(lat);
+
+            obj.location = location;
+            console.log(obj);
+        }
+        obj.browser = {};
+        obj.browser.ua = navigator.userAgent || undefined;
+        obj.browser.lang = navigator.language || undefined;
+        obj.browser.plat = navigator.platform || undefined;
+        obj.owner = client.auth.authInfo.userId;
+
+        db.collection("responses")
+            .insertOne(obj)
+            .then(recordSuccess)
+            .catch(err => console.error(`login failed with error: ${err}`));
+    }
+
+    function recordSuccess() {
+        window.location = "thankyou.html";
+    }
+
+    function showPosition() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            document.getElementById("lat").value = lat;
+            document.getElementById("lon").value = lon;
+            });
+        } else {
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
+    }
+    
+</script>
+```
