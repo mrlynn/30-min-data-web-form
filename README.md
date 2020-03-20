@@ -2,6 +2,10 @@
 
 Posting a form, capturing data and storing that in a database is a requirement as old as the web itself. Let’s take 30 minutes and build a short, but sweet solution using the MongoDB Platform. We’ll be creating a basic web form using HTML, a bit of JavaScript and storing the data in a MongoDB database. We’ll need a few things before we get moving so take a few minutes and make sure you’ve got the following items in place.
 
+Here's what the finished product will look like:
+
+![30-min-dewf.png](30-min-dewf-1.png)
+
 ## MongoDB Atlas
 
 To get started, you’ll need to have a MongoDB Atlas account - check out this article on [getting started with MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/) for some quick information to get you up and running. If you haven’t done this, [register for an account on MongoDB Atlas](https://docs.atlas.mongodb.com/tutorial/create-atlas-account/) and then deploy a free tier instance. Follow these linked guides.
