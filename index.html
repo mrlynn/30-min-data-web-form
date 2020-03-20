@@ -6,19 +6,22 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta
-      name="description"
-      content="30 Minutes to a Data Enabled Webform"
-    />
+    <meta name="description" content="30 Minutes to a Data Enabled Webform" />
     <meta name="author" content="Michael Lynn" />
 
     <title>30 Minutes to a Data Enabled Webform</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Custom fonts for this template -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+      rel="stylesheet"
+    />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css"
       rel="stylesheet"
@@ -31,7 +34,8 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="styles.css" rel="stylesheet" /> <!-- optional additional css styles if'n y'like -->
+    <link href="styles.css" rel="stylesheet" />
+    <!-- optional additional css styles if'n y'like -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.4.0/stitch.js"></script> -->
     <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.9.0/stitch.js"></script>
@@ -43,14 +47,16 @@
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-            <a class="navbar-brand" href="/index.html">Home</a>
-        </div>
+        <a class="navbar-brand" href="/index.html">Home</a>
+      </div>
     </nav>
 
     <!-- Form -->
     <section class="bg-light">
       <div class="container">
-        <h2 class="mb-5 jumbotron text-center">30 Minutes to a Data Enabled Web Form</h2>
+        <h2 class="mb-5 jumbotron text-center">
+          30 Minutes to a Data Enabled Web Form
+        </h2>
         <div class="col-md-12 mx-auto">
           <form>
             <div class="form-group">
@@ -64,56 +70,89 @@
                   class="form-control"
                 />
               </div>
-                <div class="row">
-                  <div class="col-md-4 form-group">
-                      <label for="lat">My Location - Latitude</label>
-                      <input type="text" id="lat" name="lat" value="" class="form-control" disabled>
-                  </div>
-                  <div class="col-md-4">
-                      <label for="lon">My Location - Longitude</label>
-                      <input type="text" id="lon" name="lon" value="" class="form-control" disabled>
-                  </div>
-                  <div class="col-md-4 text-middle">
-                      <input type="geolocation" type="hidden" id="geolocation" name="geolocation" hidden><br>
-                      <button type="button" class="btn btn-lg btn-primary" onclick="showPosition();">Share Location</button>
-                  </div>
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-4 form-group">
+                  <label for="lat">My Location - Latitude</label>
+                  <input
+                    type="text"
+                    id="lat"
+                    name="lat"
+                    value=""
+                    class="form-control"
+                    disabled
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label for="lon">My Location - Longitude</label>
+                  <input
+                    type="text"
+                    id="lon"
+                    name="lon"
+                    value=""
+                    class="form-control"
+                    disabled
+                  />
+                </div>
+                <div class="col-md-4 text-middle">
+                  <input
+                    type="geolocation"
+                    type="hidden"
+                    id="geolocation"
+                    name="geolocation"
+                    hidden
+                  /><br />
+                  <button
+                    type="button"
+                    class="btn btn-lg btn-primary"
+                    onclick="showPosition();"
+                  >
+                    Share Location
+                  </button>
+                </div>
               </div>
-                <div class="form-row">
-                        <label for="exp">My experience with MongoDB:</label>
-
-                        <div class="col-lg-12 col-md-12">
-                            <select name="exp" id="select_exp" class="form-control">
-                                <option value="Brand new to MongoDB">Brand new to MongoDB</option>
-                                <option value="Played with it">Played with it</option>
-                                <option value="Used in the past">Used in the past</option>
-                                <option value="Company Uses">My company uses it</option>
-                                <option value="Advanced">Advanced MongoDB User</option>
-                            </select>
-                        </div>
-    
-                    </div>
-                <div class="form-row">
-                        <label for="role">I am a:</label>
-
-                        <div class="col-lg-12 col-md-12">
-                            <select name="role" id="role" class="form-control">
-                                <option value="Student">Student</option>
-                                <option value="Gamer">Gamer</option>
-                                <option value="Developer">Developer/Engineer</option>
-                                <option value="DevRel">Developer Advocate/Relations</option>
-                                <option value="DevOps">DevOps/SRE</option>
-                                <option value="Data Scientist/Analyst">Data Analyst/Scientist</option>
-                                <option value="None/Other">Other</option>
-                            </select>
-                        </div>
-                        
-                    </div>
-            <div class="form-row">
-              <div class="col-12 col-md-3"><p></p>
-                <button class="btn btn-block btn-lg btn-primary"
-                    onclick="sendResponse();return false;"
-                    class="btn btn-lg btn-success"
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <label for="exp">My experience with MongoDB:</label>
+                <div class="col-lg-12 col-md-12">
+                  <select name="exp" id="exp" class="form-control">
+                    <option value="Brand new to MongoDB"
+                      >Brand new to MongoDB</option
                     >
+                    <option value="Played with it">Played with it</option>
+                    <option value="Used in the past">Used in the past</option>
+                    <option value="Company Uses">My company uses it</option>
+                    <option value="Advanced">Advanced MongoDB User</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="role">I am a:</label>
+              <div class="col-lg-12 col-md-12">
+                <select name="role" id="role" class="form-control">
+                  <option value="Student">Student</option>
+                  <option value="Gamer">Gamer</option>
+                  <option value="Developer">Developer/Engineer</option>
+                  <option value="DevRel">Developer Advocate/Relations</option>
+                  <option value="DevOps">DevOps/SRE</option>
+                  <option value="Data Scientist/Analyst"
+                    >Data Analyst/Scientist</option
+                  >
+                  <option value="None/Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-12 col-md-3">
+                <p></p>
+                <button
+                  class="btn btn-block btn-lg btn-primary"
+                  onclick="sendResponse();return false;"
+                  class="btn btn-lg btn-success"
+                >
                   Send Response
                 </button>
               </div>
@@ -123,60 +162,62 @@
       </div>
     </section>
 
-      <!-- Footer -->
-  <footer class="footer bg-light">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-              <ul class="list-inline mb-2">
-                <li class="list-inline-item">
-                        <a href="/about.html">About</a>
-                    </li>
-                <li class="list-inline-item">&sdot;</li>
-                <li class="list-inline-item">
-                  <a href="/contact.html">Contact</a>
-                </li>
-                <li class="list-inline-item">&sdot;</li>
-                <li class="list-inline-item">
-                  <a href="/terms.html">Terms of Use</a>
-                </li>
-                <li class="list-inline-item">&sdot;</li>
-                <li class="list-inline-item">
-                  <a href="/privacy.html">Privacy Policy</a>
-                </li>
-              </ul>
-              <p class="text-muted small mb-4 mb-lg-0">&copy; Michael Lynn 2020. All Rights Reserved.</p>
-            </div>
-            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-              <ul class="list-inline mb-0">
-                <li class="list-inline-item mr-3">
-                  <a href="https://linkedin.com/in/mlynn">
-                    <i class="fab fa-linkedin fa-2x fa-fw"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item mr-3">
-                  <a href="https://twitter.com/mlynn">
-                    <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="https://instagram.com/mlynnstagram">
-                    <i class="fab fa-instagram fa-2x fa-fw"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item">
+                <a href="/about.html">About</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="/contact.html">Contact</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="/terms.html">Terms of Use</a>
+              </li>
+              <li class="list-inline-item">&sdot;</li>
+              <li class="list-inline-item">
+                <a href="/privacy.html">Privacy Policy</a>
+              </li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">
+              &copy; Michael Lynn 2020. All Rights Reserved.
+            </p>
+          </div>
+          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mr-3">
+                <a href="https://linkedin.com/in/mlynn">
+                  <i class="fab fa-linkedin fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item mr-3">
+                <a href="https://twitter.com/mlynn">
+                  <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://instagram.com/mlynnstagram">
+                  <i class="fab fa-instagram fa-2x fa-fw"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </footer>
+      </div>
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    
 
     <script>
       const { Stitch, AnonymousCredential } = stitch;
@@ -198,18 +239,18 @@
         obj.exp = $("#exp").val();
 
         if ($("#lat").val().length > 0) {
-            var lat = $("#lat").val();
-            var lon = $("#lon").val();
-            lat = parseFloat(lat).toFixed(2);
-            lon = parseFloat(lon).toFixed(2);
-            var location = {};
-            location.type = "Point";
-            location.coordinates = new Array(1,2);
-            location.coordinates[0] = parseFloat(lon);
-            location.coordinates[1] = parseFloat(lat);
+          var lat = $("#lat").val();
+          var lon = $("#lon").val();
+          lat = parseFloat(lat).toFixed(2);
+          lon = parseFloat(lon).toFixed(2);
+          var location = {};
+          location.type = "Point";
+          location.coordinates = new Array(1, 2);
+          location.coordinates[0] = parseFloat(lon);
+          location.coordinates[1] = parseFloat(lat);
 
-            obj.location = location;
-            console.log(obj);
+          obj.location = location;
+          console.log(obj);
         }
         obj.browser = {};
         obj.browser.ua = navigator.userAgent || undefined;
@@ -239,7 +280,6 @@
           alert("Sorry, your browser does not support HTML5 geolocation.");
         }
       }
-      
     </script>
   </body>
 </html>

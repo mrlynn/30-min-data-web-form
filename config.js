@@ -1,6 +1,6 @@
 /**
  * Set us up the vars
- * */
+ */
 STITCH_APP_ID = "30mindewf-oledu";     // Change this to your stitch ID - found in the MongoDB Atlas Console - https://cloud.mongodb.com
 DBNAME = "database";                   // Name this whatever you like.
 
