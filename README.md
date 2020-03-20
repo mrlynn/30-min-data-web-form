@@ -221,3 +221,64 @@ crossorigin="anonymous"></script>
     
 </script>
 ```
+
+## The Magic
+
+Notice the button in the HTML form has a tag called `onClick`. This tag is configured with the name of a JavaScript function that is called when the user clicks the button on the HTML form. This is how we're calling the JavaScript function sendResponse() which in turn calls the function insertData() which sends the data to MongoDB. The Stitch SDK is configured with a reference to the Stitch App ID, which is configured with rules to enable an anonymous user to insert data into the database. 
+
+Once the data is inserted into the database, the JavaScript function insertData() completes and if it was successful, it calls recordSuccess() and sends the browser to the location `thankyou.html`.
+
+## Displaying Data
+
+In our `thankyou.html` page, we're doing some interesting things with charts. 
+
+In the body of this page, we have a div. 
+
+```
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="jumbotron">
+        <h2>Thanks for contributing!</h2>
+        <p>
+            Here's what the responses look like...
+        </p>
+        </div>
+        <div id="charts"></div>
+    </div>
+</section>
+```
+
+Notice the div with the id `charts`. We're going to reference that in the next stage.
+
+## Scripts
+
+We're first pulling in jquery which will make the job much more efficient. Next, we're creating an array of Chart URI's - these are the URIs for each chart we want to display on the page.  We then take the array of URIs and we append those to the div labeled charts from above. This effectively, embeds or inserts the charts into that section of the page.
+
+```
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const CHARTSURIS = [
+    "https://charts.mongodb.com/charts-lynn-qercf/embed/charts?id=ff115d78-429a-4857-a284-279e84447ba5&theme=light",
+    "https://charts.mongodb.com/charts-lynn-qercf/embed/charts?id=48d13c56-cc25-475d-8112-eb2ac080c889&theme=light",
+    "https://charts.mongodb.com/charts-lynn-qercf/embed/charts?id=5589b35a-7a08-438e-9dc8-623a36304e3d&theme=light"
+    ];
+
+    $(function() {
+        $.each(CHARTSURIS, function(index, uri) {
+            $("#charts").append(
+            '<iframe style="border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);margin-top:20px;" width="100%" height="480" src="' +
+                uri +
+                '"></iframe>'
+            );
+        });
+    });
+    function toSignup() {
+        window.location = "signup.html";
+    }
+</script>
+```
