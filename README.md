@@ -4,7 +4,7 @@ Posting a form, capturing data and storing that in a database is a requirement a
 
 Here's what the finished product will look like:
 
-![30-min-dewf.png](30-min-dewf-1.png)
+![30-min-dewf.png](./30-min-dewf-1.png)
 
 ## MongoDB Atlas
 
